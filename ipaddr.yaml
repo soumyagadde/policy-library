@@ -1,0 +1,13 @@
+apiVersion: constraints.gatekeeper.sh/v1alpha1
+kind: GCPExternalIpAccessConstraintV1
+metadata:
+  name: forbid-external-ip-whitelist
+spec:
+  severity: high
+  match:
+    target: ["organization/*"]
+  parameters:
+    mode: "whitelist"
+    instances:
+    - //compute.googleapis.com/projects/test-project/zones/us-east1-b/instances/one
+    - //compute.googleapis.com/projects/test-project/zones/us-east1-b/instances/two
